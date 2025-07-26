@@ -80,4 +80,35 @@ userroutes.post("/signin",async(req,res)=>{
         token:token
     })
 })
-userroutes.get("/profile",middleware)
+userroutes.get("/profile",middleware,async(req:any,res)=>{
+    try {
+        const user = await prismaclient.users.findFirst({
+            where: {
+                id: req.userId
+            },
+            select: {
+                id: true,
+                email: true,
+                username: true,
+                // Don't return password
+            }
+        });
+        
+        if (!user) {
+            res.status(404).json({
+                message: "User not found"
+            });
+            return;
+        }
+        
+        res.json({
+            message: "Profile fetched successfully",
+            data: user
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Internal server error"
+        });
+    }
+})
