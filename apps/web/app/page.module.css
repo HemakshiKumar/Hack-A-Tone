@@ -3,8 +3,8 @@
   --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
   --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
 
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
+  --button-primary-hover: #2563eb;
+  --button-secondary-hover: #f3f4f6;
 
   display: grid;
   grid-template-rows: 20px 1fr 20px;
@@ -14,6 +14,7 @@
   padding: 80px;
   gap: 64px;
   font-synthesis: none;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,8 +23,10 @@
     --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
     --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
+    --button-primary-hover: #3b82f6;
+    --button-secondary-hover: #374151;
+    
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
   }
 }
 
@@ -32,44 +35,55 @@
   flex-direction: column;
   gap: 32px;
   grid-row-start: 2;
+  text-align: center;
+  max-width: 800px;
 }
 
-.main ol {
-  font-family: var(--font-geist-mono);
-  padding-left: 0;
+.hero {
+  margin-bottom: 2rem;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  color: #6b7280;
   margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  list-style-position: inside;
+  line-height: 1.5;
 }
 
-.main li:not(:last-of-type) {
-  margin-bottom: 8px;
-}
-
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
+@media (prefers-color-scheme: dark) {
+  .heroTitle {
+    color: #f9fafb;
+  }
+  
+  .heroSubtitle {
+    color: #d1d5db;
+  }
 }
 
 .ctas {
   display: flex;
   gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.ctas a {
+.ctas button {
   appearance: none;
-  border-radius: 128px;
+  border-radius: 12px;
   height: 48px;
-  padding: 0 20px;
+  padding: 0 24px;
   border: none;
-  font-family: var(--font-geist-sans);
+  font-family: inherit;
   border: 1px solid transparent;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition: all 0.2s ease;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -77,42 +91,94 @@
   font-size: 16px;
   line-height: 20px;
   font-weight: 500;
+  min-width: 140px;
 }
 
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
+.primary {
+  background: #3b82f6;
+  color: white;
+  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
 }
 
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 180px;
+.primary:hover {
+  background: var(--button-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4);
 }
 
-button.secondary {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
-  border: none;
-  font-family: var(--font-geist-sans);
-  border: 1px solid transparent;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
-  background: transparent;
-  border-color: var(--gray-alpha-200);
-  min-width: 180px;
+.secondary {
+  background: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.secondary:hover {
+  background: var(--button-secondary-hover);
+  border-color: #9ca3af;
+  transform: translateY(-1px);
+}
+
+@media (prefers-color-scheme: dark) {
+  .secondary {
+    background: #374151;
+    color: #f9fafb;
+    border-color: #4b5563;
+  }
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.feature {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.feature h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.feature p {
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .feature {
+    background: rgba(31, 41, 55, 0.8);
+    border-color: rgba(75, 85, 99, 0.8);
+  }
+  
+  .feature h3 {
+    color: #f9fafb;
+  }
+  
+  .feature p {
+    color: #d1d5db;
+  }
 }
 
 .footer {
-  font-family: var(--font-geist-sans);
+  font-family: inherit;
   grid-row-start: 3;
   display: flex;
   gap: 24px;
@@ -122,28 +188,18 @@ button.secondary {
   display: flex;
   align-items: center;
   gap: 8px;
+  color: #6b7280;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .footer img {
   flex-shrink: 0;
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
 }
 
 @media (max-width: 600px) {
@@ -156,22 +212,31 @@ button.secondary {
     align-items: center;
   }
 
-  .main ol {
-    text-align: center;
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.125rem;
   }
 
   .ctas {
     flex-direction: column;
+    align-items: center;
   }
 
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
+  .ctas button {
+    width: 100%;
+    max-width: 300px;
   }
 
-  a.secondary {
-    min-width: auto;
+  .features {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .feature {
+    padding: 1.5rem;
   }
 
   .footer {
@@ -182,7 +247,7 @@ button.secondary {
 }
 
 @media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+  .footer a {
+    color: #d1d5db;
   }
 }
